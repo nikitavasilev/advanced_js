@@ -1,4 +1,6 @@
 (function () {
+  let playing = true;
+
   function Question(question, answers, correct) {
     this.question = question;
     this.answers = answers;
@@ -24,7 +26,11 @@
   );
 
   const questions = [firstQuestion, secondQuestion, thirdQuestion];
-  const num = Math.floor(Math.random() * questions.length);
+  let num, answer;
+
+  function randomNum() {
+    return num = Math.floor(Math.random() * questions.length);    
+  }
 
   function displayQuestion() {
     console.log(questions[num].question);
@@ -35,6 +41,12 @@
   }
 
   function checkAnswer(clientAnswer) {
+    if (clientAnswer === 'exit') {
+      console.log('See you!');      
+      return playing = false;
+    } 
+    
+    parseInt(answer);
     if (clientAnswer === questions[num].correct) {
       console.log('Correct answer!');
     } else {
@@ -42,7 +54,14 @@
     }
   }
 
-  displayQuestion();
-  let answer = parseInt(prompt('Please select the correct answer.'));
-  checkAnswer(answer);
+  function play() {
+    while (playing) {
+      randomNum();
+      displayQuestion();
+      answer = prompt('Please select the correct answer.');
+      checkAnswer(answer);   
+    }
+  }
+
+  play();
 })();
