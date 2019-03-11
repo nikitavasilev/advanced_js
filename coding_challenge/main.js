@@ -50,7 +50,7 @@
     clientAnswer = parseInt(answer);
     if (clientAnswer === questions[num].correct) {
       console.log('Correct answer!');
-      score += 1;
+      score++;
     } else {
       console.log('Wrong answer. Try again :)')
     }
@@ -58,6 +58,7 @@
 
   function displayScore() {
     console.log('Current score: ' + score);
+    console.log('--------------------------');
   }
 
   function play() {
