@@ -1,5 +1,7 @@
 (function () {
-  let playing = true;
+  let num, answer, playing, score;
+  playing = true;
+  score = 0;
 
   function Question(question, answers, correct) {
     this.question = question;
@@ -26,7 +28,6 @@
   );
 
   const questions = [firstQuestion, secondQuestion, thirdQuestion];
-  let num, answer;
 
   function randomNum() {
     return num = Math.floor(Math.random() * questions.length);    
@@ -46,12 +47,17 @@
       return playing = false;
     } 
     
-    parseInt(answer);
+    clientAnswer = parseInt(answer);
     if (clientAnswer === questions[num].correct) {
       console.log('Correct answer!');
+      score += 1;
     } else {
       console.log('Wrong answer. Try again :)')
     }
+  }
+
+  function displayScore() {
+    console.log('Current score: ' + score);
   }
 
   function play() {
@@ -59,7 +65,8 @@
       randomNum();
       displayQuestion();
       answer = prompt('Please select the correct answer.');
-      checkAnswer(answer);   
+      checkAnswer(answer);
+      displayScore();   
     }
   }
 
